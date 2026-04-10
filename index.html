@@ -593,7 +593,7 @@ conf.forEach(([s,t]) => { deg[s]++; deg[t]++; });
 
 const nodeColor = id => {
   const d = deg[id] || 0;
-  return d >= 6 ? "#A579E8" : d >= 4 ? "#73C290" : d >= 2 ? "#E17033" : "#9a9a94";
+  return d >= 6 ? "#90CEDC" : d >= 4 ? "#B1E3EE" : d >= 2 ? "#D0E4E8" : "#DFDFDF";
 };
 const nodeR = id => Math.max((deg[id] || 0) * 2.4 + 8, 8);
 
