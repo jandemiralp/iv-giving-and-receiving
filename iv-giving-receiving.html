@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IV — Giving & Receiving · April 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink:       #1c1c1a;
+  --ink-mid:   #5a5a56;
+  --ink-light: #9a9a94;
+  --paper:     #f7f5f0;
+  --paper-2:   #eeece6;
+  --paper-3:   #e4e1d8;
+  --accent:    #2d5f3f;
+  --accent-2:  #7b5ea7;
+  --warm:      #b85c2a;
+  --gold:      #9a7b1e;
+  --border:    rgba(28,28,26,0.12);
+  --radius:    10px;
+  --serif:     'DM Serif Display', Georgia, serif;
+  --sans:      'DM Sans', system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink:       #e8e5de;
+    --ink-mid:   #a8a49c;
+    --ink-light: #6a6762;
+    --paper:     #1a1916;
+    --paper-2:   #22201e;
+    --paper-3:   #2c2a26;
+    --accent:    #4a9e6a;
+    --accent-2:  #a080d0;
+    --warm:      #d4784a;
+    --gold:      #c4a040;
+    --border:    rgba(232,229,222,0.1);
+  }
+}
+
+html, body { height: 100%; }
+
+body {
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── Header ── */
+header {
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.header-title {
+  padding: 1.25rem 0;
+}
+
+.header-title h1 {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.header-title p {
+  font-size: 12px;
+  color: var(--ink-light);
+  margin-top: 2px;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ── Tabs ── */
+nav.tabs {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 0 1.25rem;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-light);
+  cursor: pointer;
+  transition: color 0.18s, border-color 0.18s;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  margin-bottom: -1px;
+}
+
+.tab-btn:hover { color: var(--ink); }
+
+.tab-btn.active {
+  color: var(--ink);
+  font-weight: 500;
+  border-bottom-color: var(--accent);
+}
+
+/* ── Meta strip ── */
+.meta-strip {
+  padding: 0.6rem 2rem;
+  background: var(--paper-2);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.meta-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--ink-mid);
+}
+
+.meta-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Main content ── */
+main { padding: 2rem; max-width: 860px; margin: 0 auto; }
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ── Panel headings ── */
+.panel-heading {
+  margin-bottom: 1.5rem;
+}
+
+.panel-heading h2 {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.panel-heading p {
+  font-size: 13px;
+  color: var(--ink-mid);
+  margin-top: 4px;
+  font-weight: 300;
+}
+
+/* ── Legend ── */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 1.25rem;
+  font-size: 12px;
+  color: var(--ink-mid);
+  align-items: center;
+}
+
+.leg {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.leg-swatch {
+  width: 10px; height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ── Bar chart ── */
+.bar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 9px;
+}
+
+.bar-label {
+  font-size: 12.5px;
+  color: var(--ink-mid);
+  min-width: 245px;
+  text-align: right;
+  line-height: 1.3;
+}
+
+.bar-track {
+  flex: 1;
+  background: var(--paper-3);
+  border-radius: 3px;
+  height: 20px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  border-left-width: 3px;
+  border-left-style: solid;
+  transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bar-count {
+  font-size: 12px;
+  font-weight: 500;
+  min-width: 24px;
+  text-align: left;
+}
+
+.bar-people {
+  font-size: 11px;
+  color: var(--ink-light);
+  margin-left: 255px;
+  margin-bottom: 5px;
+  margin-top: -5px;
+  line-height: 1.4;
+}
+
+/* ── Stat cards ── */
+.stat-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  background: var(--paper-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 8px 20px;
+  text-align: center;
+  min-width: 120px;
+}
+
+.stat-val {
+  font-size: 22px;
+  font-family: var(--serif);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.stat-lbl {
+  font-size: 11px;
+  color: var(--ink-light);
+  letter-spacing: 0.03em;
+}
+
+/* ── Network ── */
+#nsvg { width: 100%; display: block; cursor: default; background: var(--paper-2); border-radius: var(--radius); border: 1px solid var(--border); }
+
+.nl { font-size: 10px; font-family: var(--sans); pointer-events: none; fill: var(--ink-mid); }
+.nlh { fill: var(--ink); font-weight: 500; }
+
+/* ── Popup ── */
+#popup {
+  display: none;
+  position: absolute;
+  z-index: 20;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  width: 290px;
+  max-height: 440px;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+}
+
+#popup h3 {
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-family: var(--serif);
+  font-weight: 400;
+  color: var(--ink);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#popup .close-btn {
+  cursor: pointer;
+  font-size: 15px;
+  color: var(--ink-light);
+  line-height: 1;
+  padding: 0 2px;
+  font-family: var(--sans);
+}
+
+#popup .close-btn:hover { color: var(--ink); }
+
+#popup .sec-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin: 10px 0 5px;
+}
+
+#popup ul { padding-left: 14px; }
+
+#popup ul li {
+  font-size: 12px;
+  color: var(--ink);
+  margin-bottom: 5px;
+  line-height: 1.45;
+}
+
+#popup .empty {
+  font-size: 12px;
+  color: var(--ink-light);
+  font-style: italic;
+}
+
+/* ── Network wrap ── */
+#net-wrap { position: relative; }
+
+/* ── Network hint ── */
+.net-hint {
+  font-size: 11px;
+  color: var(--ink-light);
+  margin-top: 8px;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+/* ── Footer ── */
+footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: 11px;
+  color: var(--ink-light);
+  border-top: 1px solid var(--border);
+  margin-top: 3rem;
+  letter-spacing: 0.04em;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-title">
+    <h1>Inner Voices — Giving &amp; Receiving</h1>
+    <p>April 2026 · 19 participants · 61 asks · 97 offers</p>
+  </div>
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn active" data-tab="network" role="tab" aria-selected="true">Match network</button>
+    <button class="tab-btn" data-tab="asks" role="tab" aria-selected="false">Asks</button>
+    <button class="tab-btn" data-tab="offers" role="tab" aria-selected="false">Offers</button>
+  </nav>
+</header>
+
+<div class="meta-strip">
+  <div class="meta-pill"><span class="meta-dot" style="background:#2d5f3f;"></span>37 confirmed matches</div>
+  <div class="meta-pill"><span class="meta-dot" style="background:#9a7b1e; opacity:0.7;"></span>17 pending matches</div>
+  <div class="meta-pill"><span class="meta-dot" style="background:#7b5ea7;"></span>19 participants</div>
+</div>
+
+<main>
+
+  <!-- ── Network tab ── -->
+  <section class="tab-panel active" id="tab-network" role="tabpanel">
+    <div class="panel-heading">
+      <h2>Who matched with whom</h2>
+      <p>Click any name to see their asks and offers · hover to highlight connections · drag to rearrange</p>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-card"><div class="stat-val" style="color:#2d5f3f;">37</div><div class="stat-lbl">confirmed</div></div>
+      <div class="stat-card"><div class="stat-val" style="color:#9a7b1e;">17</div><div class="stat-lbl">pending</div></div>
+      <div class="stat-card"><div class="stat-val" style="color:#7b5ea7;">19</div><div class="stat-lbl">people</div></div>
+    </div>
+
+    <div class="legend">
+      <div class="leg"><svg width="24" height="4"><line x1="0" y1="2" x2="24" y2="2" stroke="#2d5f3f" stroke-width="2"/></svg>Confirmed</div>
+      <div class="leg"><svg width="24" height="4"><line x1="0" y1="2" x2="24" y2="2" stroke="#9a7b1e" stroke-width="1.5" stroke-dasharray="4,3"/></svg>Pending</div>
+      <div class="leg"><span class="leg-swatch" style="background:#7b5ea7; border-radius:50%; width:12px; height:12px;"></span>6–8 confirmed</div>
+      <div class="leg"><span class="leg-swatch" style="background:#2d5f3f; border-radius:50%; width:10px; height:10px;"></span>4–5</div>
+      <div class="leg"><span class="leg-swatch" style="background:#b85c2a; border-radius:50%; width:8px; height:8px;"></span>2–3</div>
+      <div class="leg"><span class="leg-swatch" style="background:#9a9a94; border-radius:50%; width:7px; height:7px;"></span>0–1</div>
+    </div>
+
+    <div id="net-wrap">
+      <div id="popup">
+        <h3><span id="popup-name"></span><span class="close-btn" id="popup-close">✕</span></h3>
+        <div id="popup-body"></div>
+      </div>
+      <svg id="nsvg" style="min-height:560px;"></svg>
+    </div>
+    <p class="net-hint">Node size reflects number of confirmed connections</p>
+  </section>
+
+  <!-- ── Asks tab ── -->
+  <section class="tab-panel" id="tab-asks" role="tabpanel">
+    <div class="panel-heading">
+      <h2>What people asked for</h2>
+      <p>61 asks across 19 participants · approximate groupings, some asks straddle categories</p>
+    </div>
+
+    <div class="legend">
+      <div class="leg"><span class="leg-swatch" style="background:#7b5ea7;"></span>Tools &amp; infrastructure</div>
+      <div class="leg"><span class="leg-swatch" style="background:#2d5f3f;"></span>Growth &amp; visibility</div>
+      <div class="leg"><span class="leg-swatch" style="background:#b85c2a;"></span>Relational &amp; developmental</div>
+      <div class="leg"><span class="leg-swatch" style="background:#9a7b1e;"></span>Resources</div>
+    </div>
+
+    <div id="asks-chart"></div>
+  </section>
+
+  <!-- ── Offers tab ── -->
+  <section class="tab-panel" id="tab-offers" role="tabpanel">
+    <div class="panel-heading">
+      <h2>What people offered</h2>
+      <p>97 offers across 19 participants · approximate groupings, some offers straddle categories</p>
+    </div>
+
+    <div class="legend">
+      <div class="leg"><span class="leg-swatch" style="background:#7b5ea7;"></span>Tools &amp; infrastructure</div>
+      <div class="leg"><span class="leg-swatch" style="background:#2d5f3f;"></span>Growth &amp; visibility</div>
+      <div class="leg"><span class="leg-swatch" style="background:#b85c2a;"></span>Relational &amp; developmental</div>
+      <div class="leg"><span class="leg-swatch" style="background:#9a7b1e;"></span>Resources</div>
+    </div>
+
+    <div id="offers-chart"></div>
+  </section>
+
+</main>
+
+<footer>Inner Voices · Giving &amp; Receiving · April 2026</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script>
+/* ═══════════════════════════════════════════════
+   TAB SWITCHING
+═══════════════════════════════════════════════ */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected','true');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    if(btn.dataset.tab === 'network') sim && sim.alpha(0.3).restart();
+  });
+});
+
+/* ═══════════════════════════════════════════════
+   DATA
+═══════════════════════════════════════════════ */
+const DATA = {
+  "Benya":{"asks":["Someone to review & give feedback on new website (re new customers)","Support with referrals from your network, for those who value nature experiences","1-2 pilot participants for online 'dummy client' sessions","Build a social media following for @raftdaddy and/or @freeflowadventures","Funders, pool of money to subsidize people having these experiences"],"offers":["Brainstorming sessions (<90 mins, 1x week)","User experience (UX) + content reviews","Referrals/promotion in relevant WhatsApp groups","AI-assisted logo design","Short guided sensory nature experience"]},
+  "Brook":{"asks":["Share generative conflict course with leaders","Hold me in your heart from April 11–15","Share my webinar with leaders interested in restorative approaches to power","Manifesting a yes from Dundurn press to accept Brook's book"],"offers":["Session of support on an inner or outer polarity – help clear stuckness/tension","Send one copy of 'Everything for Everyone'","Embodied practice support – identifying embodied patterns and offering suggested practices","Pull an archetype card to offer insight on navigating a life challenge"]},
+  "Christine":{"asks":["Help in pointing out strengths in a portfolio / LinkedIn","Help in developing as a presenter / facilitator","Help in learning about somatic practitioner path","Help in doing clean eating / health focused journey"],"offers":["Copy editing, writing, content review","Sociocracy consulting","Adult development, integral, spiral dynamics","Be a guinea pig client","Hold space, be in the meta with you"]},
+  "Daljeet":{"asks":["Guidance on advertising/promotion/marketing strategies; social media; offload to team member with revenue share"],"offers":["Content creation workflow (30 years experience) – especially consult re film/video","Soul-aligned business reading – 1:1 human design session","Share insights re using AI as a creative collaborator / vibe-coding","Crew alignment – ongoing consultation with the crew & each individual using human design (3–5 ppl)"]},
+  "James":{"asks":["IV: buddy for arranging 3 IV learning weeks (late April–early May)","IV: Co-steward for ~6 months for ongoing & strategic things for IV","IV: Intro to potential donor leads (min $20k)"],"offers":["Undefined purpose time – availability for you","Charitable money – 2–3x $5–10k to US 501c3 charities","Help you increase software maintenance & quality after vibe-coding","Consult on AI impact on any field – GROUP SESSION ALL WELCOME"]},
+  "Jan":{"asks":["Motivation buddy while applying for jobs (throughout the whole process)","Someone to bounce ideas off for digital app design (e.g. archetype model representation)"],"offers":["Discussion about plant medicine and altered states of consciousness","Support structuring systems (solopreneur & online community experience), Notion, Webflow","Help with Obsidian – how to use"]},
+  "Joanne":{"asks":["Casual conversations – no stakes or agenda","Referrals – let me show you our work, then share to your network","Looking to learn: Antigravity, Ollama, ClickUp agents"],"offers":["Communications – film-making support re structure/concepts/sound","Convening people around shared purpose (consultancy)","Automation guidance for beginners – Studio Flows, DLI…","Guidance on what to watch out for with AI (cognitive capacities, etc.)"]},
+  "Mari":{"asks":["Feedback on podcast & substack (Daljeet & Mari working on it)","Resume review"],"offers":["60 mins of soundboarding and iterating session","Develop small AI agents to do things","Discuss AI as coach – considerations, pitfalls, how to make more generative"]},
+  "Mariah":{"asks":["Accountability buddy for publishing frequency on personal blog","Solopreneur systems: time tracking & billing","Solopreneur systems: drafting landing page","Solopreneur systems: brainstorming new LLC name","Solopreneur systems: calendar scheduler setup","Solopreneur systems: email forwarding challenges","Solopreneur systems: Asana tune-up","Solopreneur systems: Obsidian lessons","Solopreneur systems: video editing lessons","Solopreneur systems: accountability buddy for digital organisation","Solopreneur systems: email management re-tooling","Solopreneur systems: Airtable & workflow automations","Solopreneur systems: tips on AI usage"],"offers":["Comprehensive permaculture garden design & plant consultation","ADHD and/or cPTSD symptom management support","Tips on healthy landlord role boundaries","How to convene & build an intentional community","Media relations strategy & support (press releases, pitches, interviews)","Grant writing expertise","Peer-to-peer support for ND and 2E individuals","Meal planning strategies","Home organisation advice","Partnership building brainstorming & execution","Helping people figure out what they want to do","Emotional neglect recovery","Daily domestic mindfulness","How to make polymer clay miniatures","How to recruit volunteers","Leadership development","Political strategy consultation"]},
+  "Mariandrea":{"asks":["More spaciousness in how we do things (shared time in IV)","Good recipes exchange, gardening tips","Money shadow work space","Presentation development: 'Unlocking potential for collaboration'","Childcare support from people I can trust","Miro tech help","Plant intelligence/psychedelics experiences share/dialogue"],"offers":["Reflection space, clarifying intentions, bandwidth/capacity","Support of teenage girl dialogue","Motivation encouragement for job searching efforts","Great recipes (including cake) to share","Gentle, spacious presence space for anything tender","Money shadow work space","Collective Presencing practice hosting","Plant intelligence/medicine experiences dialogue"]},
+  "Mark":{"asks":["A team to form a guiding collective mind around my project (Game B businesses)","A mentor to help with product selection for vibe coding","A mentor or crew to help with vibe coding","A team to hold each other accountable on project progress","Someone to practice Emergent Dialog with twice a month","Someone to collaborate on my Fears and Hopes project","Practice on Miro usage"],"offers":["Accountability buddy","Information on archetypes","Brainstorming buddy","Exploring energy with others – what is flowing and where","Feeling what is happening in the body","Emergent Dialog based on Insight Dialogue","Help with presentations","Discussing spirituality as it relates to science"]},
+  "Nathan":{"asks":["Reflection on 4th way spirituality","Reflection on Yiquan","Reflection on Listening Lab prototype (generative language)","Sensemaking feedback on my time/attention strategy","Help with daughter exploring meaning & vocation directions"],"offers":["My time for listening and dialogue about anything","Help with how to fix/build things","Exploration of systems, patterns, theories of change, group/social coordination","Feedback on how to do something (understanding/creating process)","Financial or existential knot – listening & encouragement"]},
+  "Ollie":{"asks":["Join a 2hr session to brainstorm promotional channels for my wisdom dojo","Interest-free loan or grant >$500 to extend my runway","Introductions for part-time remote work paying >$10/hr, max 20hrs/week","Introductions to people who may pay for 1:1 mindfulness mentorship","Introductions to people who may hire me to lead a mindfulness course"],"offers":["Digital marketing: go-to-market strategy & user acquisition","Brand positioning workshop","Conversion Rate Optimisation – audit/consultancy/delivery","Compassionate mindfulness – meditation training course for groups/orgs","1:1 shadow work session","1:1 spiritual guidance / mindfulness mentorship"]},
+  "Renee":{"asks":["App developer to build a Playscription app (by 2027)","Systems audit & AI agents for small business automation (Notion focus)","Develop a physical card deck"],"offers":["Canva and CapCut overviews/intro","Social media auditing & advice on growing accounts","Pretending to be a customer & giving feedback","Curriculum writing support","Style overhaul of a physical space or personal style","Logo creation discussion","Affiliate deals through Renee's account"]},
+  "Victor":{"asks":["Coaching on how to present offers related to technical service","Coaching on how to present my digital village / digital commons vision"],"offers":["1:1 connection meetings for mutual support on offering creation","90 minutes of holding space to process & exchange reflections","Co-create a bespoke online space for your specific convening needs","Assist in creating an online container for learning & developing offerings","Support in learning to create using AI / vibe coding"]},
+  "Zeela":{"asks":["Possibly video editing (not 100% sure)"],"offers":["Perspective of multicultural sensitivity, pointing out diverse experiences","Making/giving instructions to help people understand usage","Visualising and developing supporting graphics & charts","Be a guinea pig client","Wardrobe – present your physical body through clothing coherently","Ability to identify social identities and how they shape our choices","Physical movement classes online"]},
+  "Steph":{"asks":["Help in exploring a therapeutic/somatic coaching path vs a licensed therapist path"],"offers":[]}
+};
+
+/* ═══════════════════════════════════════════════
+   BAR CHARTS
+═══════════════════════════════════════════════ */
+function renderBars(containerId, categories) {
+  const max = Math.max(...categories.map(c => c.count));
+  const el = document.getElementById(containerId);
+  el.innerHTML = '';
+  categories.forEach(cat => {
+    const pct = (cat.count / max) * 100;
+    el.innerHTML += `
+      <div class="bar-row">
+        <span class="bar-label">${cat.label}</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:${pct}%; background:${cat.color}22; border-left-color:${cat.color};"></div>
+        </div>
+        <span class="bar-count" style="color:${cat.color};">${cat.count}</span>
+      </div>
+      <div class="bar-people">${cat.people}</div>`;
+  });
+}
+
+renderBars('asks-chart', [
+  { label: "Digital tools & technical skills",   count: 10, color: "#7b5ea7", people: "Joanne, Mark, Mariah, Mariandrea, Renee, Zeela" },
+  { label: "Visibility & audience building",      count: 8,  color: "#2d5f3f", people: "Benya, Brook, Daljeet, Joanne, Ollie" },
+  { label: "Business systems & solopreneur ops",  count: 8,  color: "#7b5ea7", people: "Mariah (7), Renee" },
+  { label: "Inner work & spiritual practice",     count: 7,  color: "#b85c2a", people: "Brook, Christine, Mariandrea, Nathan, Steph" },
+  { label: "Accountability & mutual holding",     count: 7,  color: "#b85c2a", people: "Brook, James, Jan, Mariah, Mark, Sandra" },
+  { label: "Professional & career development",   count: 6,  color: "#b85c2a", people: "Christine, Mari, Mariandrea, Victor" },
+  { label: "Sensemaking & reflective dialogue",   count: 5,  color: "#b85c2a", people: "Joanne, Mari, Mark, Nathan" },
+  { label: "Creative collaboration & projects",   count: 5,  color: "#2d5f3f", people: "Benya, Jan, Mark, Renee" },
+  { label: "Community & practical life support",  count: 4,  color: "#b85c2a", people: "Christine, James, Mariandrea, Nathan" },
+  { label: "Funding & financial access",          count: 3,  color: "#9a7b1e", people: "Benya, James, Ollie" },
+  { label: "Network & introductions",             count: 3,  color: "#2d5f3f", people: "Ollie (all 3 intro asks)" },
+]);
+
+renderBars('offers-chart', [
+  { label: "Inner work, shadow & spiritual practice",         count: 14, color: "#b85c2a", people: "Brook, Christine, Daljeet, Jan, Mariandrea, Mark, Nathan, Ollie, Victor" },
+  { label: "Practical life & wellbeing support",              count: 14, color: "#b85c2a", people: "Mariah (permaculture, ADHD, meal planning, home org, emotional neglect…), Benya, Mariandrea, Nathan" },
+  { label: "Sensemaking, dialogue & thought partnership",     count: 12, color: "#b85c2a", people: "Benya, Christine, James, Mari, Mariandrea, Mark, Nathan, Victor" },
+  { label: "AI & digital tools",                             count: 11, color: "#7b5ea7", people: "Daljeet, James, Jan, Joanne, Mari, Renee, Victor" },
+  { label: "Business, marketing & growth support",           count: 10, color: "#2d5f3f", people: "Benya, Mariah, Ollie, Renee" },
+  { label: "Facilitation & community building",              count: 9,  color: "#2d5f3f", people: "Christine, Daljeet, Joanne, Mariah, Victor, Zeela" },
+  { label: "Creative & communications support",              count: 8,  color: "#2d5f3f", people: "Benya, Christine, Daljeet, Joanne, Mark, Renee, Zeela" },
+  { label: "Peer support & accompaniment",                   count: 6,  color: "#b85c2a", people: "Christine, Mariandrea, Mark, Renee, Zeela" },
+  { label: "Design & visual support",                        count: 5,  color: "#7b5ea7", people: "Benya, Renee, Zeela" },
+  { label: "Embodiment & somatic practice",                  count: 4,  color: "#b85c2a", people: "Brook, Mark, Ollie, Zeela" },
+  { label: "Financial resources",                            count: 2,  color: "#9a7b1e", people: "James (charitable money), Mariah (grant writing)" },
+]);
+
+/* ═══════════════════════════════════════════════
+   NETWORK
+═══════════════════════════════════════════════ */
+const people = Object.keys(DATA);
+const W = 780, H = 560;
+
+const conf = [
+  ["Benya","Christine"],["Benya","Daljeet"],["Benya","James"],["Benya","Joanne"],
+  ["Benya","Nathan"],["Benya","Ollie"],["Benya","Renee"],
+  ["Brook","Christine"],["Brook","James"],["Brook","Mari"],["Brook","Mark"],
+  ["Christine","Mariandrea"],["Christine","Mark"],["Christine","Victor"],
+  ["Daljeet","James"],["Daljeet","Jan"],["Daljeet","Joanne"],["Daljeet","Mariah"],
+  ["Daljeet","Ollie"],["Daljeet","Renee"],["Daljeet","Victor"],
+  ["James","Joanne"],["James","Ollie"],
+  ["Jan","Mariah"],["Jan","Mariandrea"],["Jan","Mark"],["Jan","Nathan"],["Jan","Renee"],
+  ["Joanne","Ollie"],["Joanne","Renee"],
+  ["Mari","Nathan"],
+  ["Mariah","Mariandrea"],["Mariah","Mark"],["Mariah","Nathan"],
+  ["Mariandrea","Nathan"],["Mariandrea","Zeela"],
+  ["Mark","Nathan"]
+];
+
+const pend = [
+  ["Brook","Victor"],["Brook","Steph"],
+  ["Christine","Mari"],["Christine","Zeela"],
+  ["Daljeet","Zeela"],["Jan","Zeela"],
+  ["Joanne","Victor"],
+  ["Mariah","Ollie"],["Mariah","Zeela"],
+  ["Mari","Victor"],["Mari","Zeela"],
+  ["Mariandrea","Ollie"],
+  ["Mark","Victor"],
+  ["Ollie","Renee"],["Ollie","Zeela"],
+  ["Steph","Zeela"],["Victor","Zeela"]
+];
+
+const nodes = people.map(id => {
+  const obj = {id};
+  if(id === "Steph") { obj.x = W * 0.44; obj.y = H * 0.5; }
+  return obj;
+});
+
+const links = [
+  ...conf.map(([s,t]) => ({source:s, target:t, c:true})),
+  ...pend.map(([s,t]) => ({source:s, target:t, c:false}))
+];
+
+const deg = {};
+people.forEach(p => { deg[p] = 0; });
+conf.forEach(([s,t]) => { deg[s]++; deg[t]++; });
+
+const nodeColor = id => {
+  const d = deg[id] || 0;
+  return d >= 6 ? "#7b5ea7" : d >= 4 ? "#2d5f3f" : d >= 2 ? "#b85c2a" : "#9a9a94";
+};
+const nodeR = id => Math.max((deg[id] || 0) * 2.4 + 8, 8);
+
+const svg = d3.select("#nsvg").attr("viewBox", `0 0 ${W} ${H}`);
+const linkG = svg.append("g");
+const nodeG = svg.append("g");
+
+const linkSel = linkG.selectAll("line").data(links).join("line")
+  .attr("stroke", d => d.c ? "#2d5f3f" : "#9a7b1e")
+  .attr("stroke-opacity", d => d.c ? 0.5 : 0.35)
+  .attr("stroke-width", d => d.c ? 2 : 1.4)
+  .attr("stroke-dasharray", d => d.c ? null : "5,4");
+
+const nodeSel = nodeG.selectAll("g").data(nodes).join("g")
+  .style("cursor", "pointer")
+  .call(d3.drag()
+    .on("start", (e,d) => { if(!e.active) sim.alphaTarget(0.3).restart(); d.fx=d.x; d.fy=d.y; })
+    .on("drag",  (e,d) => { d.fx=e.x; d.fy=e.y; })
+    .on("end",   (e,d) => { if(!e.active) sim.alphaTarget(0); d.fx=null; d.fy=null; })
+  );
+
+nodeSel.append("circle")
+  .attr("r", d => nodeR(d.id))
+  .attr("fill", d => nodeColor(d.id))
+  .attr("fill-opacity", 0.85)
+  .attr("stroke", "var(--paper)")
+  .attr("stroke-width", 2);
+
+nodeSel.append("text")
+  .text(d => d.id)
+  .attr("text-anchor", "middle")
+  .attr("class", d => deg[d.id] >= 4 ? "nl nlh" : "nl")
+  .attr("y", d => nodeR(d.id) + 12);
+
+/* popup */
+const popup   = document.getElementById("popup");
+const popName = document.getElementById("popup-name");
+const popBody = document.getElementById("popup-body");
+const svgEl   = document.getElementById("nsvg");
+
+function showPopup(event, d) {
+  event.stopPropagation();
+  const info = DATA[d.id];
+  popName.textContent = d.id;
+  let html = `<div class="sec-label" style="color:#7b5ea7;">Asks (${info.asks.length})</div>`;
+  if(info.asks.length) { html += "<ul>"; info.asks.forEach(a => { html += `<li>${a}</li>`; }); html += "</ul>"; }
+  else html += `<span class="empty">No asks recorded</span>`;
+  html += `<div class="sec-label" style="color:#2d5f3f; margin-top:12px;">Offers (${info.offers.length})</div>`;
+  if(info.offers.length) { html += "<ul>"; info.offers.forEach(o => { html += `<li>${o}</li>`; }); html += "</ul>"; }
+  else html += `<span class="empty">No offers recorded</span>`;
+  popBody.innerHTML = html;
+
+  const svgRect  = svgEl.getBoundingClientRect();
+  const wrapRect = document.getElementById("net-wrap").getBoundingClientRect();
+  const scale    = svgRect.width / W;
+  const sx = d.x * scale + svgRect.left - wrapRect.left;
+  const sy = d.y * scale + svgRect.top  - wrapRect.top;
+
+  popup.style.display = "block";
+  const pw = 290, ph = popup.offsetHeight || 320;
+  let left = sx + nodeR(d.id) * scale + 10;
+  let top  = sy - 40;
+  if(left + pw > wrapRect.width - 10) left = sx - pw - nodeR(d.id) * scale - 10;
+  if(top + ph > wrapRect.height) top = wrapRect.height - ph - 10;
+  if(top < 0) top = 4;
+  popup.style.left = left + "px";
+  popup.style.top  = top  + "px";
+}
+
+document.getElementById("popup-close").addEventListener("click", e => { e.stopPropagation(); popup.style.display = "none"; });
+document.getElementById("net-wrap").addEventListener("click", e => { if(!popup.contains(e.target)) popup.style.display = "none"; });
+
+/* hover highlight */
+const connectedSet = id => {
+  const s = new Set([id]);
+  links.forEach(l => {
+    const src = typeof l.source === "object" ? l.source.id : l.source;
+    const tgt = typeof l.target === "object" ? l.target.id : l.target;
+    if(src === id) s.add(tgt);
+    if(tgt === id) s.add(src);
+  });
+  return s;
+};
+
+nodeSel
+  .on("mouseover", (e, d) => {
+    const nb = connectedSet(d.id);
+    linkSel.attr("stroke-opacity", l => {
+      const s = typeof l.source === "object" ? l.source.id : l.source;
+      const t = typeof l.target === "object" ? l.target.id : l.target;
+      return (s === d.id || t === d.id) ? (l.c ? 0.85 : 0.65) : 0.05;
+    });
+    nodeSel.attr("opacity", n => nb.has(n.id) ? 1 : 0.15);
+  })
+  .on("mouseout", () => {
+    linkSel.attr("stroke-opacity", d => d.c ? 0.5 : 0.35);
+    nodeSel.attr("opacity", 1);
+  })
+  .on("click", showPopup);
+
+/* simulation */
+var sim = d3.forceSimulation(nodes)
+  .force("link",      d3.forceLink(links).id(d => d.id).distance(d => d.c ? 88 : 110).strength(d => d.c ? 0.42 : 0.18))
+  .force("charge",    d3.forceManyBody().strength(-270))
+  .force("center",    d3.forceCenter(W / 2, H / 2))
+  .force("collision", d3.forceCollide().radius(d => nodeR(d.id) + 22))
+  .force("x",         d3.forceX(W / 2).strength(d => d.id === "Steph" ? 0.18 : 0.02))
+  .force("y",         d3.forceY(H / 2).strength(d => d.id === "Steph" ? 0.18 : 0.02));
+
+sim.on("tick", () => {
+  const cl = (v, r, max) => Math.max(r + 8, Math.min(max - r - 8, v));
+  linkSel
+    .attr("x1", d => d.source.x).attr("y1", d => d.source.y)
+    .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
+  nodeSel.attr("transform", d => `translate(${cl(d.x, nodeR(d.id), W)},${cl(d.y, nodeR(d.id), H)})`);
+});
+</script>
+</body>
+</html>
