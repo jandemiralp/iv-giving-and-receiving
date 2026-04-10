@@ -399,10 +399,10 @@ footer {
     <div class="legend">
       <div class="leg"><svg width="24" height="4"><line x1="0" y1="2" x2="24" y2="2" stroke="#73C290" stroke-width="2"/></svg>Confirmed</div>
       <div class="leg"><svg width="24" height="4"><line x1="0" y1="2" x2="24" y2="2" stroke="#E6C150" stroke-width="1.5" stroke-dasharray="4,3"/></svg>Pending</div>
-      <div class="leg"><span class="leg-swatch" style="background:#A579E8; border-radius:50%; width:12px; height:12px;"></span>6–8 confirmed</div>
-      <div class="leg"><span class="leg-swatch" style="background:#73C290; border-radius:50%; width:10px; height:10px;"></span>4–5</div>
-      <div class="leg"><span class="leg-swatch" style="background:#E17033; border-radius:50%; width:8px; height:8px;"></span>2–3</div>
-      <div class="leg"><span class="leg-swatch" style="background:#9a9a94; border-radius:50%; width:7px; height:7px;"></span>0–1</div>
+      <div class="leg"><span class="leg-swatch" style="background:#CB6630; border-radius:50%; width:12px; height:12px;"></span>6–8 confirmed</div>
+      <div class="leg"><span class="leg-swatch" style="background:#E9793B; border-radius:50%; width:10px; height:10px;"></span>4–5</div>
+      <div class="leg"><span class="leg-swatch" style="background:#FF9962; border-radius:50%; width:8px; height:8px;"></span>2–3</div>
+      <div class="leg"><span class="leg-swatch" style="background:#DBD2CD; border-radius:50%; width:7px; height:7px;"></span>0–1</div>
     </div>
 
     <div id="net-wrap">
@@ -593,7 +593,7 @@ conf.forEach(([s,t]) => { deg[s]++; deg[t]++; });
 
 const nodeColor = id => {
   const d = deg[id] || 0;
-  return d >= 6 ? "#90CEDC" : d >= 4 ? "#B1E3EE" : d >= 2 ? "#D0E4E8" : "#DFDFDF";
+  return d >= 6 ? "#B85C2A" : d >= 4 ? "#E9793B" : d >= 2 ? "#FF9962" : "#DBD2CD";
 };
 const nodeR = id => Math.max((deg[id] || 0) * 2.4 + 8, 8);
 
